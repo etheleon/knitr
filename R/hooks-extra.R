@@ -148,9 +148,8 @@ hook_webgl = local({commonParts = TRUE; function(before, options, envir) {
   prefix = sub('^([^[:alpha:]])', '_\\1', prefix) # should start with letters or _
   rgl::writeWebGL(
     dir = dirname(name), filename = name, template = NULL, prefix = prefix,
-    snapshot = FALSE, commonParts = commonParts
+    snapshot = FALSE, commonParts = TRUE
   )
-  commonParts <<- FALSE
   res = readLines(name)
   res = res[!grepl('^\\s*$', res)] # remove blank lines
   paste(gsub('^\\s+', '', res), collapse = '\n') # no indentation at all (for Pandoc)
